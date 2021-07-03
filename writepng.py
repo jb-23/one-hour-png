@@ -22,6 +22,16 @@ def main():
 
     print(f"data = {chunk_idat}\n")
 
+    chunk_iend = make_chunk("IEND")
+
+    print(f"trailer = {chunk_iend}\n")
+
+    with open("test.png", 'wb') as file:
+        file.write(signature)
+        file.write(chunk_ihdr)
+        file.write(chunk_idat)
+        file.write(chunk_iend)
+
 
 def make_chunk(type, data=b""):
     b = len(data).to_bytes(4, byteorder="big")  # Length of Data
